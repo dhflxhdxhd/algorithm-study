@@ -3,7 +3,7 @@ package basic;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Basic_bfs {
+public class BFSAlgorithm {
     private static int[][] graph;
     private static boolean[] visited;
     private static Queue<Integer> queue;

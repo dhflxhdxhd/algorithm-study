@@ -1,7 +1,7 @@
 package basic;
 
 // 재귀버전
-public class Basic_dfs {
+public class DFSAlgorithm {
     // 방문처리 배열
     static boolean[] visited = new boolean[9];
     // 그래프 연결 상태, 인덱스가 각각의 노드 번호
