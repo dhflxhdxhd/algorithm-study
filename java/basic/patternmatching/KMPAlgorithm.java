@@ -71,6 +71,8 @@ public class KMPAlgorithm {
                 System.out.println("패턴이 텍스트의 인덱스 " + (tIdx - pIdx) + "에서 발견되었습니다.");
                 pIdx = lps[pIdx-1];
             } else if (tIdx < tLength && text.charAt(tIdx) != pattern.charAt(pIdx) ) { // 현재 문자들이 일치하지 않을 때
+
+                // 이전에 비교하고 있는 인덱스가 있다면
                 if(pIdx != 0){
                     pIdx = lps[pIdx-1];
                 } else{
