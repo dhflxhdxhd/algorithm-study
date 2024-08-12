@@ -1,4 +1,4 @@
-package basic;
+package basic.search;
 
 import java.util.Stack;
 

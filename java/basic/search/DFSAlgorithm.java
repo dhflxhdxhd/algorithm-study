@@ -1,4 +1,4 @@
-package basic;
+package basic.search;
 
 // 재귀버전
 public class DFSAlgorithm {
