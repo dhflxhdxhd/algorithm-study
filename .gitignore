@@ -1,1 +1,6 @@
-java/out/*
+*/out/*
+.idea
+*/.idea
+.vscode
+.replit
+.replit.nix
