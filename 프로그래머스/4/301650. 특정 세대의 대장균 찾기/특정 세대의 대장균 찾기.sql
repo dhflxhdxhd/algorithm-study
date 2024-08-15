@@ -1,0 +1,21 @@
+/*
+ECOLI_DATA 실험실에서 배양한 대장균들의 정보
+ID, PARENT_ID, SIZE_OF_COLONY, DIFFERENTIATION_DATE, GENOTYPE
+
+최초의 대장균 개체의 PARENT_ID 는 NULL 값
+
+3세대의 대장균의 ID(ID) 를 출력
+대장균의 ID 에 대해 오름차순 정렬
+*/
+SELECT ID 
+FROM ECOLI_DATA
+WHERE PARENT_ID IN (
+    SELECT ID 
+    FROM ECOLI_DATA
+    WHERE PARENT_ID IN (
+        SELECT ID
+        FROM ECOLI_DATA
+        WHERE PARENT_ID IS NULL
+    )
+)
+ORDER BY ID ASC
