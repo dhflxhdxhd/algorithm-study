@@ -19,6 +19,7 @@ public class BinarySearch_LowerBound {
         }
     }
 
+    // target 값보다 크거나 같은 첫 번째 인덱스
     public static int uselowerBound(int[]  sortedArr, int target){
         int left = 0; // 왼쪽 인덱스
         int right = sortedArr.length; // 오른쪽 인덱스
