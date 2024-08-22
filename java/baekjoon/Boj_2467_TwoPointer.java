@@ -13,7 +13,7 @@ b : B 용액 c(ml)의 특성값
 
 투포인터 방식
  */
-public class Boj_2467 {
+public class Boj_2467_TwoPointer {
 
     static int[] solutions = new int[2]; // 특성값이 0에 가까운 용액의 위치(인덱스)
     public static void main(String[] args) throws IOException {
@@ -41,7 +41,7 @@ public class Boj_2467 {
         int left = 0;
         int right = num -1; // sValues에서 마지막 용액의 위치
         int target = 0; // 목표 특성값
-        int minGap = Integer.MAX_VALUE; // 가장 큰 용액의 크기 + 1
+        int minGap = Integer.MAX_VALUE;
 
         while(left < right){
             int tempValue = sValues[left] + sValues[right]; // 두 용액 혼합 시 특성값

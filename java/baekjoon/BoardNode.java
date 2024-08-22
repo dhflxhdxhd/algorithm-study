@@ -9,5 +9,11 @@ class BoardNode {
         this.col = col;
     }
 
-
+    @Override
+    public String toString() {
+        return "BoardNode{" +
+                "row=" + row +
+                ", col=" + col +
+                '}';
+    }
 }

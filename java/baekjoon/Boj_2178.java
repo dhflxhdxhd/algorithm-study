@@ -7,27 +7,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-class MazeNode {
-    int row;
-    int col;
-
-    public MazeNode(int row, int col) {
-        this.row = row;
-        this.col = col;
-    }
-
-    @Override
-    public String toString() {
-        return "(" + row + "," + col + ")";
-    }
-}
-
 public class Boj_2178 {
     static int n, m;
     static int[][] maze;
     static boolean[][] visited;
-    static MazeNode[][] parent; // 최단 경로 저장 배열
-    static Queue<MazeNode> queue = new LinkedList<>();
+    static BoardNode[][] parent; // 최단 경로 저장 배열
+    static Queue<BoardNode> queue = new LinkedList<>();
 
     // 상우하좌
     static final int[] dr = {-1, 0, 1, 0};
@@ -42,7 +27,7 @@ public class Boj_2178 {
 
         maze = new int[n][m];
         visited = new boolean[n][m];
-        parent = new MazeNode[n][m];
+        parent = new BoardNode[n][m];
 
         for (int i = 0; i < n; i++) {
             String line = br.readLine();
@@ -57,19 +42,19 @@ public class Boj_2178 {
     }
 
     static int bfs(int r, int c) {
-        queue.offer(new MazeNode(r, c));
+        queue.offer(new BoardNode(r, c));
         visited[r][c] = true;
         maze[r][c] = 1;
 
         while (!queue.isEmpty()) {
-            MazeNode node = queue.poll();
+            BoardNode node = queue.poll();
 
             for (int d = 0; d < 4; d++) {
                 int nr = node.row + dr[d];
                 int nc = node.col + dc[d];
 
                 if (isInArea(nr, nc) && !visited[nr][nc] && maze[nr][nc] == 1) {
-                    queue.offer(new MazeNode(nr, nc));
+                    queue.offer(new BoardNode(nr, nc));
                     visited[nr][nc] = true;
                     maze[nr][nc] = maze[node.row][node.col] + 1;
                     parent[nr][nc] = node;
