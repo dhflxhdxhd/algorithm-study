@@ -1,6 +1,9 @@
-*/out/*
+java/out/*
 .idea
 */.idea
 .vscode
 .replit
 .replit.nix
+
+*.iml
+production/*
