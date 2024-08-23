@@ -1,8 +1,5 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 // Node 클래스: 정점과 해당 정점까지의 가중치를 나타냄
 class Node implements Comparable<Node>{
@@ -31,7 +28,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = null;
-
+        StringBuilder sb = new StringBuilder();
         int T = Integer.parseInt(br.readLine()); // 테스트 케이스 수
 
         for (int test = 0; test < T; test++) {
@@ -96,12 +93,16 @@ public class Main {
             }
 
             Collections.sort(dest);
-            String result = dest.stream()
-                    .map(String::valueOf)
-                    .collect(Collectors.joining(" "));
 
-            System.out.println(result);
+            for (int d = 0; d < dest.size(); d++) {
+                sb.append(dest.get(d));
+                sb.append(" ");
+            }
+
+            sb.append("\n");
         }
+
+        System.out.println(sb.toString());
     }
 
     static void dijkstra(List<List<Node>> adjList, int[] distance, int start){
