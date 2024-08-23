@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-// Node 클래스: 정점과 해당 정점까지의 가중치를 나타냄
 class Node implements Comparable<Node>{
     int vertex; // 정점
     int weight; // 간선(가중치)
@@ -58,15 +57,14 @@ public class Main {
                 adjList.get(b).add(new Node(a,d));
             }
 
-
             int[] destOptions = new int[t]; // 목적지 후보 담는 배열
             for (int i = 0; i < t; i++) {
                 destOptions[i] = Integer.parseInt(br.readLine());
             }
 
-            int[] sDist = new int[V+1]; // 최단 경로 비용 담는 배열
-            int[] gDist = new int[V+1]; // 최단 경로 비용 담는 배열
-            int[] hDist = new int[V+1]; // 최단 경로 비용 담는 배열
+            int[] sDist = new int[V+1]; // 정점 s를 시작으로 하는 최단 경로 비용 담는 배열
+            int[] gDist = new int[V+1]; // 정점 g를 시작으로 하는 최단 경로 비용 담는 배열
+            int[] hDist = new int[V+1]; // 정점 h를 시작으로 하는 최단 경로 비용 담는 배열
             Arrays.fill(sDist, Integer.MAX_VALUE);
             Arrays.fill(gDist, Integer.MAX_VALUE);
             Arrays.fill(hDist, Integer.MAX_VALUE);
@@ -82,29 +80,34 @@ public class Main {
                 int targetDest = destOptions[i];
 
                 // 방법 1
-                int gToh = sDist[g] + gDist[h] + hDist[targetDest];
-                int hTog = sDist[h] + hDist[g] + gDist[targetDest];
+                int gToh = sDist[g] + gDist[h] + hDist[targetDest]; // g에서 h를 거치는 최단 경로 비용 (s->g->h->targetDest)
+                int hTog = sDist[h] + hDist[g] + gDist[targetDest]; // h에서 g를 거치는 최단 경로 비용 (s->h->g->targetDest)
 
-                if(gToh == sDist[targetDest]){
-                    dest.add(targetDest);
-                }else if(hTog == sDist[targetDest]){
+                // "g에서 h를 거치는 최단 경로 비용"이 "s에서 목적지 후보까지 거치는 최단 경로 비용"이 같다면 후보 가능
+                if (gToh == sDist[targetDest] || hTog == sDist[targetDest]) {
                     dest.add(targetDest);
                 }
             }
 
-            Collections.sort(dest);
+            Collections.sort(dest); // 오름차순 정렬
 
             for (int d = 0; d < dest.size(); d++) {
                 sb.append(dest.get(d));
-                sb.append(" ");
+                if (d < dest.size() - 1) {
+                    sb.append(" ");
+                }
             }
-
             sb.append("\n");
         }
-
         System.out.println(sb.toString());
     }
 
+    /**
+     * 다익스트라 알고리즘을 이용하여 시작 정점에서 다른 모든 정점까지의 최단 경로를 구하는 메소드
+     * @param adjList 인접 리스트
+     * @param distance 최단 경로 비용 배열
+     * @param start 시작 정점
+     */
     static void dijkstra(List<List<Node>> adjList, int[] distance, int start){
         PriorityQueue<Node> pq = new PriorityQueue<>();
         distance[start] = 0;
