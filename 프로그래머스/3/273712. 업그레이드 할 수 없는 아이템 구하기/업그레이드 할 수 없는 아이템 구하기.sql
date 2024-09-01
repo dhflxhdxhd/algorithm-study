@@ -1,0 +1,29 @@
+/*
+[정보]
+'ITEM_A'->'ITEM_B' : A를 B로 업그레이드 가능함
+ITEM_A : ITEM_B의 PARENT 아이템
+PARENT 아이템 X -> ROOT 아이템
+
+ITEM_INFO 게임에서 사용되는 아이템 정보
+ITEM_ID, ITEM_NAME, RARITY, PRICE
+
+ITEM_TREE 아이템 관계 정보
+ITEM_ID, PARENT_ITEM_ID
+
+[문제]
+
+[결과]
+더 이상 업그레이드할 수 없는 아이템의 아이템 ID(ITEM_ID), 아이템 명(ITEM_NAME), 아이템의 희귀도(RARITY)를 출력
+
+아이템 ID desc
+*/
+
+SELECT ITEM_ID, ITEM_NAME, RARITY
+FROM ITEM_INFO
+WHERE ITEM_ID NOT IN (
+    SELECT DISTINCT PARENT_ITEM_ID
+    FROM ITEM_TREE
+    WHERE PARENT_ITEM_ID IS NOT NULL
+)
+ORDER BY ITEM_ID DESC;
+
