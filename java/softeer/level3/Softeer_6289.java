@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 // 6289. 우물 안 개구리
-public class WellFrog {
+public class Softeer_6289 {
 
     static int n,m,count = 0;
     static int[] weights;
