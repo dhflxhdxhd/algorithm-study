@@ -1,5 +1,7 @@
 package baekjoon;
 
+import baekjoon.model.BoardNode;
+
 import java.io.*;
 import java.util.*;
 

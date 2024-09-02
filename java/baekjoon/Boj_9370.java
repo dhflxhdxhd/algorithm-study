@@ -1,5 +1,7 @@
 package baekjoon;
 
+import baekjoon.model.Node;
+
 import java.io.*;
 import java.util.*;
 

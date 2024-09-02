@@ -1,8 +1,8 @@
-package baekjoon;
+package baekjoon.model;
 
-class BoardNode {
-    int row;
-    int col;
+public class BoardNode {
+    public int row; // y 좌표
+    public int col; // x 좌표
 
     public BoardNode(int row, int col) {
         this.row = row;
