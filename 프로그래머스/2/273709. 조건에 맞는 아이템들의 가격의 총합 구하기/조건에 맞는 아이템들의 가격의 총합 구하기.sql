@@ -1,0 +1,14 @@
+/*
+ITEM_INFO 아이템 정보
+ITEM_ID, ITEM_NAME, RARITY, PRICE
+
+[문제]
+희귀도가 'LEGEND'인 아이템들의 가격의 총합
+
+[결과]
+컬럼명은 'TOTAL_PRICE'
+*/
+
+SELECT SUM(PRICE) AS 'TOTAL_PRICE'
+FROM ITEM_INFO
+WHERE RARITY = "LEGEND";
