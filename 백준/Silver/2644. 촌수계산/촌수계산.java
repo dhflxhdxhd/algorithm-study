@@ -1,12 +1,9 @@
-
 import java.io.*;
 import java.util.*;
 
 // 2644. 촌수계산
 public class Main {
-
     static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-    static int[] distance;
     static boolean[] visited;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,8 +18,6 @@ public class Main {
             graph.add(new ArrayList<>());
         }
         visited = new boolean[n+1];
-        distance = new int[n+1];
-        Arrays.fill(distance, -1);
 
         int m = Integer.parseInt(br.readLine()); // 관계의 개수
         for (int i = 0; i < m; i++) {
@@ -34,31 +29,22 @@ public class Main {
             graph.get(y).add(x);
         }
 
-        int kinship = calculateKinship(p1,p2);
+        calculateKinship(p1,p2,0);
         System.out.println(kinship);
     }
 
-    private static int calculateKinship(int start, int end){
-        Queue<Integer> queue = new ArrayDeque<>();
-        queue.offer(start);
-        distance[start] = 0; // 자기 자신과는 촌수 0
-
-        while(!queue.isEmpty()){
-            int p = queue.poll();
-
-            for (int neighbor : graph.get(p)){
-                if(!visited[neighbor]){
-                    visited[neighbor] = true;
-                    distance[neighbor] = distance[p] + 1;
-                    queue.offer(neighbor);
-
-                    if(neighbor == end){
-                        return distance[neighbor];
-                    }
-                }
-            }
+    static int kinship = -1;
+    private static void calculateKinship(int start, int end, int distance){
+        if(start == end){
+            kinship = distance;
+            return;
         }
 
-        return distance[end];
+        visited[start] = true;
+        for (int neighbor : graph.get(start)){
+            if(!visited[neighbor]){
+                calculateKinship(neighbor, end, distance+1);
+            }
+        }
     }
 }
