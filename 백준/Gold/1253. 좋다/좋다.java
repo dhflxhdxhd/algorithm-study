@@ -34,12 +34,12 @@ public class Main {
         int right = N-1;
 
         while(left < right){
-            if (left == currentIdx) {
+            if(left == currentIdx){
                 left++;
                 continue;
             }
 
-            if (right == currentIdx) {
+            if(right == currentIdx){
                 right--;
                 continue;
             }
@@ -49,7 +49,6 @@ public class Main {
                 return true;
             } else if (sum > currentNumber) {
                 right--;
-                
             }else {
                 left++;
             }
