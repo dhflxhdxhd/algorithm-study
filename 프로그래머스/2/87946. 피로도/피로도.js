@@ -1,33 +1,24 @@
 function solution(k, dungeons) {
-    const orders = Array.from({ length: dungeons.length }, (value, index) => index);
-    const result = [];
-    
-    getPermutations(orders, [], result);
-    
     let maxDungeon = 0;
-    for (const order of result) {
-        let energy = k;
-        let count = 0;
 
-        for (const index of order) {
-            if (energy >= dungeons[index][0]) {
-                count++;
-                energy -= dungeons[index][1];
+    function backtrack(energy, visited, count) {
+        maxDungeon = Math.max(maxDungeon, count);
+        
+        if(maxDungeon === dungeons.length){ // 던전이 가질 수 있는 최대 크기
+            return maxDungeon;
+        }
+
+        for (let i = 0; i < dungeons.length; i++) {
+            if (!visited[i] && energy >= dungeons[i][0]) {
+                visited[i] = true;
+                backtrack(energy - dungeons[i][1], visited, count + 1);
+                visited[i] = false;
             }
         }
-        maxDungeon = Math.max(maxDungeon, count);
     }
+
+    backtrack(k, Array(dungeons.length).fill(false), 0);
     return maxDungeon;
 }
 
-function getPermutations(arr, current = [], result) {
-    if (arr.length === 0) {
-        result.push(current);
-        return; 
-    }
-    
-    for (let i = 0; i < arr.length; i++) {
-        const next = arr.slice(0, i).concat(arr.slice(i + 1));
-        getPermutations(next, current.concat(arr[i]), result);
-    }
-}
+
