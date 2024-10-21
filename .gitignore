@@ -7,5 +7,5 @@ java/out/*
 
 *.iml
 production/*
-
+java/baekjoon/out/*
 .DS_Store
