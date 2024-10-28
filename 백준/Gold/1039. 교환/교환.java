@@ -29,10 +29,12 @@ public class Main {
 
     private static void getMaxValue(int n, int k){
         Queue<CountNum> queue = new ArrayDeque<>();
-        boolean[][] visited = new boolean[1000000+1][k+1];
+//        boolean[][] visited = new boolean[1000000+1][k+1];
+        Set<String> visited = new HashSet<String>();
 
         queue.offer(new CountNum(n,0));
-        visited[n][0] = true;
+//        visited[n][0] = true;
+        visited.add(n+","+0);
 
         while(!queue.isEmpty()){
             CountNum current = queue.poll();
@@ -49,11 +51,14 @@ public class Main {
                 for(int j=i+1; j<len; j++){
                     int swapNumber = swapPlaces(currentNum, i, j);
                     String nextSet = swapNumber+","+(currentCount+1);
-
-                    if(swapNumber != 0 && !visited[swapNumber][currentCount+1]){
+                    if (swapNumber != 0 && !visited.contains(nextSet)){
                         queue.offer(new CountNum(swapNumber, currentCount+1));
-                        visited[swapNumber][currentCount+1] = true;
+                        visited.add(nextSet);
                     }
+//                    if(swapNumber != 0 && !visited[swapNumber][currentCount+1]){
+//                        queue.offer(new CountNum(swapNumber, currentCount+1));
+//                        visited[swapNumber][currentCount+1] = true;
+//                    }
                 }
             }
         }
