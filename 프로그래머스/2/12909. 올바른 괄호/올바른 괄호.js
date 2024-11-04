@@ -1,5 +1,4 @@
 function solution(s){
-    var answer = true;
     
     let stack = [];
     for(let word of s){
@@ -8,20 +7,11 @@ function solution(s){
         }else if(word === ")"){
             if(stack[stack.length-1] == "("){
                 stack.pop();
-                continue;
+            }else{
+                return false;
             }
-            
-            answer = false;
-            break;
         }
     }
     
-    if(answer){
-        if(stack.length > 0){
-            return false;
-        }
-        return answer;
-    }else{
-        return answer;
-    }
+    return stack.length === 0;
 }
