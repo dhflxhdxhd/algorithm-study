@@ -5,7 +5,6 @@ import java.util.*;
 // 3079. 입국심사
 public class Main {
     static int n, k;
-//    static long minTime = Long.MAX_VALUE; // 최소 시간을 저장할 변수
     static int[] timeGroup;
 
     public static void main(String[] args) throws IOException {
@@ -27,7 +26,6 @@ public class Main {
 
         long temp = getMinTime(maxTime); // 최소 시간 계산
         System.out.println(temp);
-//        System.out.println(minTime); // 결과 출력
     }
 
     /**
@@ -38,7 +36,7 @@ public class Main {
         long left = 0; // 가능한 최소 소요시간 (가장 작은 범위)
         long right = maxTime * k; // 가능한 최대 소요시간 (최악의 경우)
 
-        while (left <= right) {
+        while (left < right) {
             long mid = left + (right - left) / 2;
 
             long available = 0; // 현재 시간(mid) 내에 처리할 수 있는 총 사람 수 계산
@@ -48,15 +46,13 @@ public class Main {
                     break;
                 }
             }
-
             if (available >= k) { // 모든 사람을 처리할 수 있는 경우
-//                minTime = Math.min(minTime, mid); // 최소 시간 갱신
-                right = mid - 1; // 더 짧은 시간에서 탐색
+                right = mid; // 더 짧은 시간에서 탐색
             } else { // 처리할 수 없는 경우
                 left = mid + 1; // 더 긴 시간에서 탐색
             }
         }
 
-        return right + 1;
+        return right;
     }
 }
