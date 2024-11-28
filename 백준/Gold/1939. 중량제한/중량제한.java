@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.*;
 
@@ -49,6 +48,13 @@ public class Main {
         System.out.println(result);
     }
 
+    /**
+     * 이진 탐색을 통해 두 섬을 연결할 수 있는 최대 중량 제한을 구하는 메소드
+     * @param start     출발 섬 번호
+     * @param end       도착 섬 번호
+     * @param maxWeight 최대 중량
+     * @return          두 섬을 연결할 수 있는 최대 중량 제한
+     */
     private static int getPossibleMaxWeight(int start, int end, int maxWeight){
         int left = 0;
         int right = maxWeight;
@@ -66,6 +72,14 @@ public class Main {
         return left-1;
     }
 
+
+    /**
+     * 현재 중량 제한에서 두 섬이 연결 가능한지 여부를 확인하는 메소드
+     * @param start     출발 섬 번호
+     * @param end       도착 섬 번호
+     * @param tempWeight 중량 제한
+     * @return          두 섬을 연결할 수 있으면 true, 아니면 false
+     */
     private static boolean canMove(int start, int end, int tempWeight){
         if(start == end){
             return true;
