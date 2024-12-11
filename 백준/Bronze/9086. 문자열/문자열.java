@@ -12,10 +12,14 @@ public class Main {
         for (int i = 0; i < t; i++) {
             String target = br.readLine();
 
-            String result = "";
-            result += target.substring(0,1);
-            result += target.substring(target.length()-1);
+//            String result = "";
+//            result += target.substring(0,1);
+//            result += target.substring(target.length()-1);
+
+//            String result = target.charAt(0) + "" + target.charAt(target.length()-1);
+            String result = String.valueOf(target.charAt(0)) + String.valueOf(target.charAt(target.length()-1));
             sb.append(result).append("\n");
+
         }
 
         System.out.println(sb.deleteCharAt(sb.length()-1).toString());
