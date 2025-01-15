@@ -10,7 +10,8 @@ public class Main {
     static boolean[] isUsed;
     static char[] signs;
 
-    static ArrayList<String> results = new ArrayList<>();
+    static String maxNum = "";
+    static  String minNum = "9999999999";
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         k = Integer.parseInt(br.readLine());
@@ -24,17 +25,14 @@ public class Main {
         isUsed = new boolean[10];
         makeSets(0, "");
 
-        Collections.sort(results, Comparator.comparingDouble(Double::parseDouble));
-        String minNum = results.get(0);
-        String maxNum = results.get(results.size()-1);
-
         System.out.println(maxNum);
         System.out.println(minNum);
     }
 
     private static void makeSets(int depth, String str){
         if(depth > k){
-            results.add(str);
+            if (str.compareTo(maxNum) > 0) maxNum = str;
+            if (str.compareTo(minNum) < 0) minNum = str;
             return;
         }
 
@@ -54,4 +52,5 @@ public class Main {
         return false;
     }
 }
+
 
